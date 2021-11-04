@@ -1,23 +1,3 @@
-pipeline { 
-    agent any 
-    options {
-        skipStagesAfterUnstable()
-    }
-    stages {
-        stage('Build') { 
-            steps { 
-                sh 'date' 
-            }
-        }
-        stage('Test'){
-            steps {
-                sh 'du -sh'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'ls -larth'
-            }
-        }
-    }
-}
+
+@Library('test-jenkins') _
+JenkinsCommon 'nightly'
