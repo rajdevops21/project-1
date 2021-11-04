@@ -1,5 +1,5 @@
 // JenkinsCommon.groovy
-def call (String jobtype) {
+def call(String jobtype) {
     pipeline { 
         agent any 
         parameters {
