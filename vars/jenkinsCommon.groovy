@@ -21,7 +21,7 @@ def call(String jobtype) {
             gitremote_training = "${params.gitremote_training}"
             jenkinsdslgitremote = "${params.jenkinsdslgitremote}"
             jenkinsdslgitbranch = "${params.jenkinsdslgitbranch}"
-            jobtype = "${params.jobtype}"
+            //jobtype = "${params.jobtype}"
         }
         stages {
             stage('Build') { 
