@@ -1,8 +1,4 @@
-pipeline { 
-    agent any 
-    options {
-        skipStagesAfterUnstable()
-    }
+node {
      triggers {
         // Requires https://plugins.jenkins.io/parameterized-scheduler/
         parameterizedCron('''
@@ -10,12 +6,7 @@ pipeline {
             H/10 * * * * %jobtype=parent-nightly
         ''')
     }
-    stages {
-        stage('Build') {
-            String jenkinsFile = ./common.groovy
-            }
-        load jenkinsFile
-        }
-       
+    stage("Run the main pipieline") {
+        load "common.groovy"
     }
 }
