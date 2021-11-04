@@ -1,7 +1,7 @@
 #!groovy
 
 @Library('test-jenkins') _
-jenkinsCommon 'nightly'
+jenkinsCommon 'parent-nightly'
 
 triggers {
         // Requires https://plugins.jenkins.io/parameterized-scheduler/
