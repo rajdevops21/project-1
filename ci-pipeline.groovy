@@ -3,21 +3,19 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
+     triggers {
+        // Requires https://plugins.jenkins.io/parameterized-scheduler/
+        parameterizedCron('''
+            # pdsw-sonos-controller-player-s2 repo
+            H/10 * * * * %jobtype=parent-nightly
+        ''')
+    }
     stages {
-        stage('Build') { 
-            steps { 
-                sh 'date'
+        stage('Build') {
+            String jenkinsFile = ./common.groovy
             }
+        load jenkinsFile
         }
-        stage('Test'){
-            steps {
-                sh 'du -sh' 
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'echo "Test-1"'
-            }
-        }
+       
     }
 }
