@@ -26,17 +26,17 @@ def call(String jobtype) {
         stages {
             stage('Build') { 
                 steps { 
-                    sh 'echo $jobtype'
+                    sh 'echo "${jobtype}"'
                 }
             }
             stage('Test'){
                 steps {
-                    sh 'echo $jobtype' 
+                    sh 'echo "${jobtype}"' 
                 }
             }
             stage('Deploy') {
                 steps {
-                    sh 'echo $jobtype'
+                    sh 'echo "${jobtype}"'
                 }
             }
         }
