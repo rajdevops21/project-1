@@ -1,4 +1,4 @@
 #!groovy
 
-@Library('test-jenkins') _
+Library 'test-jenkins'
 JenkinsCommon 'nightly'
