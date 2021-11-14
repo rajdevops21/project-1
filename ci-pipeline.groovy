@@ -11,8 +11,10 @@ pipeline {
     stages {
         stage('Nightly-Run') {
             steps {
+                script {
                 def nightly = load "common.groovy"
                 nightly.mycommoncode()
+                }
             }
         }
     }
