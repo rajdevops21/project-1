@@ -1,3 +1,5 @@
+
+def commoncode(){
 pipeline { 
         agent any 
         parameters {
@@ -39,3 +41,5 @@ pipeline {
             }
         }
     }
+}
+return this
