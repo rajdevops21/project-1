@@ -1,2 +1,4 @@
-@Library('test-jenkins') _
-JenkinsCommon 'nightly'
+node{
+def common = load “common.groovy”
+common.mycommoncode()
+}
