@@ -1,4 +1,4 @@
 node{
-def common = load “common.groovy”
-common.mycommoncode()
+def ci = load “common.groovy”
+ci.mycommoncode()
 }
