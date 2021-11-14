@@ -1,5 +1,5 @@
 
-def commoncode(){
+def mycommoncode(){
 pipeline { 
         agent any 
         parameters {
