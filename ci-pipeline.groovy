@@ -1,5 +1,4 @@
-node {
-    stage("Run the main pipieline") {
-        load "common.groovy"
-    }
+node{
+def common = load “common.groovy”
+common.commoncode()
 }
