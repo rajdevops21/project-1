@@ -1,5 +1,4 @@
-node{
-    pipeline {
+pipeline {
         agent any
         triggers {
             // Requires https://plugins.jenkins.io/parameterized-scheduler/
@@ -10,5 +9,5 @@ node{
         }
 def common = load “nightly.groovy”
 common.mycode()
-    }
+
 }
