@@ -1,3 +1,4 @@
+def mycode() {
 pipeline { 
         agent any 
         parameters {
@@ -38,4 +39,5 @@ pipeline {
                 }
             }
         }
+   }
 }
