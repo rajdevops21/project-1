@@ -1,6 +1,6 @@
 def ciBranch(){
     pipeline {
-        agent ubuntu
+        agent any
         stages {
             stage('Build') {
                 steps {
