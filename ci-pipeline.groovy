@@ -4,7 +4,7 @@ properties([[$class: 'BuildDiscarderProperty',
                 pipelineTriggers([parameterizedCron('* * * * * %jobtype=ci')]),
                 ])
 node{
-  scm checkout
+  checkout scm
   parameters {
         string(name: 'gitremote', defaultValue: 'git@github.com:Sonos-Inc/pdsw-sonos-controller-player-s2.git', description: 'Git remote with product source code')
         string(name: 'gitremote_training', defaultValue: 'git@github.com:Sonos-Inc/pdsw-sonos-controller-player-s2-training.git', description: 'Git remote with product source code')
