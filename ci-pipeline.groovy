@@ -1,4 +1,4 @@
 node{
-def common = load “nightly.groovy”
-common.mycode()
+def ci = load “nightly.groovy”
+ci.mycode()
 }
