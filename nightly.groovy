@@ -1,4 +1,4 @@
-def ciBranch(){
+def ciBranch() {
     pipeline {
         agent any
         stages {
