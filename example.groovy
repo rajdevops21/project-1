@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo $pwd'
+                sh 'echo "$pwd"'
             }
         }
         stage('Test') {
             steps {
-                sh 'echo "$whoami'
+                sh 'echo "$whoami"'
             }
         }
     }
