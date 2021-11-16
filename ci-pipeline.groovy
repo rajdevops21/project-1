@@ -1,4 +1,5 @@
 node{
-def ci = load 'nightly.groovy'
+  checkout scm
+  def ci = load 'nightly.groovy'
   ci.ciBranch()
 }
