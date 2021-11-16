@@ -2,6 +2,6 @@ def rajci
 pipeline {
   agent any
   checkout scm
-  ci = load 'nightly.groovy'
-  ci.ciBranch()
+  rajci = load 'nightly.groovy'
+  rajci.raj()
 }
