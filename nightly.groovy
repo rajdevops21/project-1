@@ -1,10 +1,10 @@
 def ciBranch(){
     node {
         stage('Build') {
-            echo "Job type is: ${jobtype}"
+            print "DEBUG: parameter jobtype = ${jobtype}"
         }
         stage('Test') {
-            echo "Job type is: ${jobtype}"
+            print "DEBUG: parameter jobtype = ${jobtype}"
         }
     }
 }
