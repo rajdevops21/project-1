@@ -1,17 +1,10 @@
 def ciBranch(){
-    pipeline {
-        node any
-        stages {
-            stage('Build') {
-                steps {
-                    sh 'echo $date'
-                }
-            }
-            stage('Test') {
-                steps {
-                    sh 'echo $time'
-                }
-            }
+    node {
+        stage('Build') {
+            sh 'echo $date'
+        }
+        stage('Test') {
+            sh 'echo $time'
         }
     }
 }
