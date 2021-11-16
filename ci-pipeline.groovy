@@ -7,13 +7,12 @@ node{
         string(name: 'jenkinsdslgitbranch', defaultValue: 'p4/main', description: 'Git branch for Jenkins DSL repo to pull dsl-branches and enabled-jobs.json from')
         string(name: 'jobtype', defaultValue: 'ci', description: 'Type of jobs to trigger: ci, parent-nightly, weekly-nightly')
   }
-  triggers {
-            // Requires https://plugins.jenkins.io/parameterized-scheduler/
-            parameterizedCron('''
-                # pdsw-sonos-controller-player-s2 repo
-                H 23 * * *   %jobtype=parent-nightly
-            ''')
-  }
+  properties(
+    [
+        ...  , // other properties that you have
+        pipelineTriggers([cron('H/10 * * * *')]),
+    ]
+  )
   ci = load 'nightly.groovy'
   ci.ciBranch()
 }
