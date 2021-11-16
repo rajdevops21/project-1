@@ -1,5 +1,5 @@
 pipeline {
   agent any
-  def rajci = load 'nightly.groovy'
+  def rajci = load 'raj-ci.groovy'
   rajci.raj()
 }
