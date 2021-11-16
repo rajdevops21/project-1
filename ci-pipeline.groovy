@@ -11,6 +11,13 @@ node{
         string(name: 'jenkinsdslgitbranch', defaultValue: 'p4/main', description: 'Git branch for Jenkins DSL repo to pull dsl-branches and enabled-jobs.json from')
         string(name: 'jobtype', defaultValue: 'ci', description: 'Type of jobs to trigger: ci, parent-nightly, weekly-nightly')
   }
+  environment {
+            gitremote = "${params.gitremote}"
+            gitremote_training = "${params.gitremote_training}"
+            jenkinsdslgitremote = "${params.jenkinsdslgitremote}"
+            jenkinsdslgitbranch = "${params.jenkinsdslgitbranch}"
+            jobtype = "${params.jobtype}"
+  }
   ci = load 'nightly.groovy'
   ci.ciBranch()
 }
