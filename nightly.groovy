@@ -1,6 +1,6 @@
 def ciBranch(){
     pipeline {
-        agent any
+        node any
         stages {
             stage('Build') {
                 steps {
