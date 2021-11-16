@@ -16,6 +16,11 @@ node {
     echo "Current workspace is $WORKSPACE"
    
    stage("Determine build file") {
+      def workspace = pwd()
+      workspace = env.WORKSPACE
+      echo "Current workspace is ${env.WORKSPACE}"
+      echo "Current workspace is $WORKSPACE"
+      
       String JenkinsFile = nightly.groovy
    }
    // Here the Jenkins build file is loaded and executed
