@@ -1,7 +1,6 @@
 
 def mycommoncode(){
-pipeline { 
-        agent any 
+node {
         parameters {
             string(name: 'gitremote', defaultValue: 'git@github.com:Sonos-Inc/pdsw-sonos-controller-player-s2.git', description: 'Git remote with product source code')
             string(name: 'gitremote_training', defaultValue: 'git@github.com:Sonos-Inc/pdsw-sonos-controller-player-s2-training.git', description: 'Git remote with product source code')
@@ -23,22 +22,20 @@ pipeline {
             jenkinsdslgitbranch = "${params.jenkinsdslgitbranch}"
             jobtype = "${params.jobtype}"
         }
-        stages {
-            stage('Build') { 
+        stage('Build') { 
                 steps { 
-                    sh 'echo "${jobtype}"'
+                        sh 'echo "${jobtype}"'
                 }
-            }
-            stage('Test'){
+        }
+        stage('Test'){
                 steps {
-                    sh 'echo "${jobtype}"' 
+                        sh 'echo "${jobtype}"' 
                 }
-            }
-            stage('Deploy') {
+        }
+        stage('Deploy') {
                 steps {
-                    sh 'echo "${jobtype}"'
+                        sh 'echo "${jobtype}"'
                 }
-            }
         }
     }
 }
