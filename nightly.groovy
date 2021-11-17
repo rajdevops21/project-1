@@ -24,6 +24,7 @@ def ciBranch(){
                     echo ========== Initial Git Refs for Source ============
                     git show-ref
                     cd ..
+                    rm -fr jenkinsdsl
                     mkdir jenkinsdsl
                     cd jenkinsdsl
                     git clone ${jenkinsdslgitremote} . --no-checkout
