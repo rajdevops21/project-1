@@ -16,13 +16,13 @@ node{
         )
       ]
   )
-  environment {
-            gitremote = "${params.gitremote}"
-            gitremote_training = "${params.gitremote_training}"
-            jenkinsdslgitremote = "${params.jenkinsdslgitremote}"
-            jenkinsdslgitbranch = "${params.jenkinsdslgitbranch}"
-            jobtype = "${params.jobtype}"
-  }
+//  environment {
+//            gitremote = "${params.gitremote}"
+//            gitremote_training = "${params.gitremote_training}"
+//            jenkinsdslgitremote = "${params.jenkinsdslgitremote}"
+//            jenkinsdslgitbranch = "${params.jenkinsdslgitbranch}"
+//            jobtype = "${params.jobtype}"
+//  }
   ci = load 'nightly.groovy'
   ci.ciBranch()
 }
