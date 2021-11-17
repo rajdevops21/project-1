@@ -3,7 +3,9 @@ properties([[$class: 'BuildDiscarderProperty',
                 strategy: [$class: 'LogRotator', numToKeepStr: '10']],
             pipelineTriggers([cron('* * * * *')]),
                 ])
-
+node{
+  checkout scm
+  
 properties(
     [
       parameters(
@@ -15,8 +17,6 @@ properties(
         )
       ]
   )
-node{
-  checkout scm
   
 //  environment {
 //            gitremote = "${params.gitremote}"
