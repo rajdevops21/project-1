@@ -5,6 +5,13 @@ import hudson.EnvVars
 def commoncode(){
     timeout(150) {
         node {
+            properties([
+                parameters(
+                    [string(name: 'gitremote_training', defaultValue: 'https://github.com/github/hackathons.git', description: 'Git remote with product source code'),
+                     string(name: 'jenkinsdslgitremote', defaultValue: 'https://github.com/github/hackathons.git', description: 'Git remote for Jenkins DSL repo'),
+                     string(name: 'jenkinsdslgitbranch', defaultValue: 'main', description: 'Git branch for Jenkins DSL repo to pull dsl-branches and enabled-jobs.json from'),]
+                )
+            ])
             stage('Build') {
                 print "DEBUG: parameter jobtype = ${jobtype}"
             }
