@@ -36,7 +36,7 @@ def ciBranch(){
                 '''
         }
         stage('WS clean'){
-            bat 'git clean -fdx'
+            sh 'rm -fr *'
          }
     }
 }
