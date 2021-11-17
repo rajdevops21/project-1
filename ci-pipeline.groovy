@@ -15,6 +15,6 @@ node{
             )
                 ])
   
-  ci = load 'nightly.groovy'
-  ci.ciBranch()
+  ci = load 'common.groovy'
+  ci.commoncode()
 }
