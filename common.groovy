@@ -3,15 +3,16 @@ import hudson.slaves.EnvironmentVariablesNodeProperty
 import hudson.EnvVars
 
 def commoncode(){
-    node {
-        stage('Build') {
-            print "DEBUG: parameter jobtype = ${jobtype}"
-        }
-        stage('Test') {
-            print "DEBUG: parameter jobtype = ${jobtype}"
-        }
-        stage('Git Fetch tags') {
-             sh '''#!/bin/bash
+    timeout(150) {
+        node {
+            stage('Build') {
+                print "DEBUG: parameter jobtype = ${jobtype}"
+            }
+            stage('Test') {
+                print "DEBUG: parameter jobtype = ${jobtype}"
+            }
+            stage('Git Fetch tags') {
+                sh '''#!/bin/bash
                     set -e -x -o pipefail
                     rm -fr gitrepo
                     mkdir gitrepo
@@ -34,10 +35,11 @@ def commoncode(){
                     git show-ref
                     cd ..
                 '''
+            }
+            stage('WS clean'){
+                sh 'rm -fr *'
+            }
         }
-        stage('WS clean'){
-            sh 'rm -fr *'
-         }
     }
 }
 return this
