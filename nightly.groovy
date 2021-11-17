@@ -35,12 +35,9 @@ def ciBranch(){
                     cd ..
                 '''
         }
-        post {
-            always {
-                echo 'Cleaning workspace'
-                deleteDir()
-            }
-        }
+        stage('WS clean'){
+            bat 'git clean -fdx'
+         }
     }
 }
 return this
