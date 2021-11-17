@@ -13,6 +13,7 @@ def ciBranch(){
         stage('Git Fetch tags') {
              sh '''#!/bin/bash
                     set -e -x -o pipefail
+                    rm -fr gitrepo
                     mkdir gitrepo
                     cd gitrepo
                     git clone ${gitremote} . --no-checkout
