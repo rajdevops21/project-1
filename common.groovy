@@ -1,5 +1,5 @@
 import jenkins.model.Jenkins
-import hudson.slaves.EnvironmentVariablesNodeProperty
+//import hudson.slaves.EnvironmentVariablesNodeProperty
 import hudson.EnvVars
 
 def commoncode(){
