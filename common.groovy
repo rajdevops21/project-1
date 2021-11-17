@@ -1,42 +1,43 @@
+import jenkins.model.Jenkins
+import hudson.slaves.EnvironmentVariablesNodeProperty
+import hudson.EnvVars
 
-def mycommoncode(){
-node {
-        parameters {
-            string(name: 'gitremote', defaultValue: 'git@github.com:Sonos-Inc/pdsw-sonos-controller-player-s2.git', description: 'Git remote with product source code')
-            string(name: 'gitremote_training', defaultValue: 'git@github.com:Sonos-Inc/pdsw-sonos-controller-player-s2-training.git', description: 'Git remote with product source code')
-            string(name: 'jenkinsdslgitremote', defaultValue: 'git@github.com:Sonos-Inc/pdsw-jenkins-dsl.git', description: 'Git remote for Jenkins DSL repo')
-            string(name: 'jenkinsdslgitbranch', defaultValue: 'p4/main', description: 'Git branch for Jenkins DSL repo to pull dsl-branches and enabled-jobs.json from')
-            string(name: 'jobtype', defaultValue: 'ci', description: 'Type of jobs to trigger: ci, parent-nightly, weekly-nightly')
+def commoncode(){
+    node {
+        stage('Build') {
+            print "DEBUG: parameter jobtype = ${jobtype}"
         }
-        options {
-            disableConcurrentBuilds()
-            buildDiscarder(
-                logRotator(numToKeepStr:'', daysToKeepStr: '7', artifactDaysToKeepStr: '', artifactNumToKeepStr: '')
-        )
-            timeout(time: 150, unit: 'MINUTES')
+        stage('Test') {
+            print "DEBUG: parameter jobtype = ${jobtype}"
         }
-        environment {
-            gitremote = "${params.gitremote}"
-            gitremote_training = "${params.gitremote_training}"
-            jenkinsdslgitremote = "${params.jenkinsdslgitremote}"
-            jenkinsdslgitbranch = "${params.jenkinsdslgitbranch}"
-            jobtype = "${params.jobtype}"
+        stage('Git Fetch tags') {
+             sh '''#!/bin/bash
+                    set -e -x -o pipefail
+                    rm -fr gitrepo
+                    mkdir gitrepo
+                    cd gitrepo
+                    git clone ${gitremote} . --no-checkout
+                    if [ "${gitremote_training}" ]; then
+                        git remote add training "${gitremote_training}"
+                    fi
+                    git fetch --all
+                    echo ========== Initial Git Refs for Source ============
+                    git show-ref
+                    cd ..
+                    rm -fr jenkinsdsl
+                    mkdir jenkinsdsl
+                    cd jenkinsdsl
+                    git clone ${jenkinsdslgitremote} . --no-checkout
+                    git fetch --all --tags
+                    git checkout ${jenkinsdslgitbranch}
+                    echo ========== Git refs for Jenkins DSL ===============
+                    git show-ref
+                    cd ..
+                '''
         }
-        stage('Build') { 
-                steps { 
-                        sh 'echo "${jobtype}"'
-                }
-        }
-        stage('Test'){
-                steps {
-                        sh 'echo "${jobtype}"' 
-                }
-        }
-        stage('Deploy') {
-                steps {
-                        sh 'echo "${jobtype}"'
-                }
-        }
+        stage('WS clean'){
+            sh 'rm -fr *'
+         }
     }
 }
 return this
