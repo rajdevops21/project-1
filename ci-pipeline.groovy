@@ -1,13 +1,9 @@
 def ci
 properties([[$class: 'BuildDiscarderProperty',
                 strategy: [$class: 'LogRotator', numToKeepStr: '10']],
+            pipelineTriggers([cron('* * * * *')]),
                 ])
-properties(
-    [
-        ...  , // other properties that you have
-        pipelineTriggers([cron('* * * * *')]),
-    ]
-)
+
 properties(
     [
       parameters(
