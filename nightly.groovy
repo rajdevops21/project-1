@@ -33,6 +33,12 @@ def ciBranch(){
                     cd ..
                 '''
         }
+        post {
+            always {
+                echo 'Cleaning workspace'
+                deleteDir()
+            }
+        }
     }
 }
 return this
