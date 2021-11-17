@@ -1,15 +1,9 @@
 def ci
-// properties([[$class: 'BuildDiscarderProperty',
-//                strategy: [$class: 'LogRotator', numToKeepStr: '10']],
-//                pipelineTriggers([cron('* * * * *')]),
-//                ])
-node{
-  checkout scm
-  properties(
-    [[$class: 'BuildDiscarderProperty',
+properties([[$class: 'BuildDiscarderProperty',
                 strategy: [$class: 'LogRotator', numToKeepStr: '10']],
                 pipelineTriggers([cron('* * * * *')]),
-                ]
+                ])
+properties(
     [
       parameters(
         [string(name: 'gitremote', defaultValue: 'https://github.com/github/hackathons.git', description: 'Git remote with product source code'),
@@ -20,6 +14,9 @@ node{
         )
       ]
   )
+node{
+  checkout scm
+  
 //  environment {
 //            gitremote = "${params.gitremote}"
 //            gitremote_training = "${params.gitremote_training}"
