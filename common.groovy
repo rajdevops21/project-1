@@ -5,6 +5,11 @@ import jenkins.model.Jenkins
 def commoncode(){
     timeout(150) {
         node {
+            environment {
+                def gitremote_training = "git@github.com:Sonos-Inc/pdsw-sonos-controller-player-s2-training.git"
+                def jenkinsdslgitremote = "git@github.com:Sonos-Inc/pdsw-jenkins-dsl.git"
+                def jenkinsdslgitbranch = "p4/main"
+                
             stage('Build') {
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                     print "DEBUG: parameter jobtype = ${jobtype}"
@@ -14,6 +19,7 @@ def commoncode(){
                 print "DEBUG: parameter jobtype = ${jobtype}"
             }
             stage('Git Fetch tags') {
+                 
                 sh '''#!/bin/bash
                     set -e -x -o pipefail
                     rm -fr gitrepo
