@@ -9,6 +9,7 @@ def commoncode(){
                 def gitremote_training = "git@github.com:Sonos-Inc/pdsw-sonos-controller-player-s2-training.git"
                 def jenkinsdslgitremote = "git@github.com:Sonos-Inc/pdsw-jenkins-dsl.git"
                 def jenkinsdslgitbranch = "p4/main"
+            }
                 
             stage('Build') {
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
