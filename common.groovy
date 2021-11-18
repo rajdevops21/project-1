@@ -5,11 +5,9 @@ import jenkins.model.Jenkins
 def commoncode(){
     timeout(150) {
         node {
-            environment {
-                def gitremote_training = "git@github.com:Sonos-Inc/pdsw-sonos-controller-player-s2-training.git"
-                def jenkinsdslgitremote = "git@github.com:Sonos-Inc/pdsw-jenkins-dsl.git"
-                def jenkinsdslgitbranch = "p4/main"
-            }
+            env.gitremote_training = "git@github.com:Sonos-Inc/pdsw-sonos-controller-player-s2-training.git"
+            env.jenkinsdslgitremote = "git@github.com:Sonos-Inc/pdsw-jenkins-dsl.git"
+            env.jenkinsdslgitbranch = "p4/main"
                 
             stage('Build') {
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
