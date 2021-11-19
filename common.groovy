@@ -5,6 +5,9 @@ import jenkins.model.Jenkins
 def commoncode(){
     timeout(150) {
         node {
+            properties([
+                disableConcurrentBuilds()
+            ])
             env.gitremote_training = "git@github.com:Sonos-Inc/pdsw-sonos-controller-player-s2-training.git"
             env.jenkinsdslgitremote = "git@github.com:Sonos-Inc/pdsw-jenkins-dsl.git"
             env.jenkinsdslgitbranch = "p4/main"
