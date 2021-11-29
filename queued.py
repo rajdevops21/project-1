@@ -6,14 +6,14 @@ import re
 import ssl
 import urllib2
 
+from sonos.lib.password.passwordsafe import PasswordSafe
 
 UPSTREAM_JOB_NAME = os.getenv('JOB_NAME')
 UPSTREAM_BUILD_ID = os.getenv('BUILD_NUMBER')
 JENKINS_URL = os.getenv('JENKINS_URL').rstrip('/')
-JENKINS_USER = os.getenv('JENKINS_USER') or os.getenv('JENKINS_USERNAME')
-JENKINS_TOKEN = os.getenv('JENKINS_API_TOKEN') or os.getenv('JENKINS_API_KEY')
+JENKINS_USER = 'build'
 
-ENCODED_TOKEN = base64.b64encode('%s:%s' % (JENKINS_USER, JENKINS_TOKEN)).decode('ascii')
+ENCODED_TOKEN = PasswordSafe().get('jenkins', 'build')
 HEADERS = {
     'Authorization': 'Basic %s' % ENCODED_TOKEN,
 }
