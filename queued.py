@@ -42,7 +42,7 @@ def send_jenkins_request(location, request_data=None, method='GET'):
     except urllib2.HTTPError as e:
         response_code = e.code
 
-    print('url: {}\ncode: {}'.format(request_url, response_code, headers))
+    print('url: {}\ncode: {}'.format(request_url, response_code, HEADERS))
     return response_string
 
 
