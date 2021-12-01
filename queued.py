@@ -10,7 +10,7 @@ import urllib2
 
 UPSTREAM_JOB_NAME = os.getenv('JOB_NAME')
 UPSTREAM_BUILD_ID = os.getenv('BUILD_NUMBER')
-JENKINS_URL = os.getenv('JENKINS_URL').rstrip('/')
+JENKINS_URL = http://10.25.12.43:8080
 JENKINS_USER = os.getenv('JENKINS_USER') or os.getenv('JENKINS_USERNAME')
 JENKINS_TOKEN = os.getenv('JENKINS_API_TOKEN') or os.getenv('JENKINS_API_KEY')
 
