@@ -14,7 +14,7 @@ JENKINS_URL = "http://10.25.12.43:8080"
 JENKINS_USER = os.getenv('JENKINS_USER') or os.getenv('JENKINS_USERNAME')
 JENKINS_TOKEN = "BocceBal1"
 
-ENCODED_TOKEN = base64.b64encode('%s:%s' % (JENKINS_USER, JENKINS_TOKEN)).decode('ascii')
+ENCODED_TOKEN = base64.encodestring('%s:%s' % (JENKINS_USER, JENKINS_TOKEN)).replace('\n', '')
 HEADERS = {
     'Authorization': 'Basic %s' % ENCODED_TOKEN,
 }
