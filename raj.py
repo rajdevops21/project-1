@@ -50,6 +50,7 @@ def send_jenkins_request(location, request_data=None, method='GET'):
 def strip_xml_tags_and_split(txt, split_by='\n'):
     result = re.sub('<[^>]*>', split_by, txt)
     result = [i for i in result.split(split_by) if i]
+    print(result)
     return result
 
 
@@ -66,13 +67,13 @@ url = (
     % UPSTREAM_BUILD_ID
 )
 data = send_jenkins_request(url)
-#queue_ids = strip_xml_tags_and_split(data)
-#for qid in queue_ids:
-#    send_jenkins_request('/queue/cancelItem?id=%s' % qid, method='POST')
-tree = ElementTree.fromstring(data)
-root = tree.getroot()
-for id_node in root.findall("id"):
-  send_jenkins_request("/queue/cancelItem?id={}".format(id_node.text))
+queue_ids = strip_xml_tags_and_split(data)
+for qid in queue_ids:
+    send_jenkins_request('/queue/cancelItem?id=%s' % qid, method='POST')
+#tree = ElementTree.fromstring(data)
+#root = tree.getroot()
+#for id_node in root.findall("id"):
+#  send_jenkins_request("/queue/cancelItem?id={}".format(id_node.text))
 
 # Find downstream running jobs
 #
