@@ -47,10 +47,10 @@ def send_jenkins_request(location, request_data=None, method='GET'):
     return response_string
 
 
-#def strip_xml_tags_and_split(txt, split_by='\n'):
-#    result = re.sub('<[^>]*>', split_by, txt)
-#    result = [i for i in result.split(split_by) if i]
-#    return result
+def strip_xml_tags_and_split(txt, split_by='\n'):
+    result = re.sub('<[^>]*>', split_by, txt)
+    result = [i for i in result.split(split_by) if i]
+    return result
 
 
 # Find downstream jobs in a queue
