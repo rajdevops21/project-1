@@ -1,11 +1,10 @@
 def ci
 
 node{
+  timestamps {
+    ansiColor("xterm") {
   checkout scm
-  options {
-    timestamps()
-    ansiColor('xterm')
-  }
+  
   
   properties([[$class: 'BuildDiscarderProperty',
                 strategy: [$class: 'LogRotator', numToKeepStr: '30']],
@@ -18,4 +17,6 @@ node{
   
   ci = load 'common.groovy'
   ci.commoncode()
+    }
+  }
 }
