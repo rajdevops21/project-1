@@ -5,6 +5,9 @@ import jenkins.model.Jenkins
 def commoncode(){
     timeout(150) {
         node {
+            timestamps {
+                //time stamps
+            }
             properties([
                 disableConcurrentBuilds()
             ])
