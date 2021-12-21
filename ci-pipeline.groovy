@@ -2,8 +2,9 @@ def ci
 
 node{
   checkout scm
-  timestamps {
-    // some block
+  options {
+    timestamps()
+    ansiColor('xterm')
   }
   
   properties([[$class: 'BuildDiscarderProperty',
