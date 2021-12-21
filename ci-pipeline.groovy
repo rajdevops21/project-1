@@ -2,6 +2,9 @@ def ci
 
 node{
   checkout scm
+  timestamps {
+    // some block
+  }
   
   properties([[$class: 'BuildDiscarderProperty',
                 strategy: [$class: 'LogRotator', numToKeepStr: '30']],
