@@ -2,7 +2,6 @@ def ci
 
 node{
   timestamps {
-    ansiColor("xterm") {
   checkout scm
   
   
@@ -17,6 +16,5 @@ node{
   
   ci = load 'common.groovy'
   ci.commoncode()
-    }
   }
 }
