@@ -21,30 +21,10 @@ def commoncode(){
                 stage('Test') {
                     print "DEBUG: parameter jobtype = ${jobtype}"
                 }
-                stage('Git Fetch tags') {
-                 
+                stage('Example Build') {
                     sh '''#!/bin/bash
-                        set -e -x -o pipefail
-                        rm -fr gitrepo
-                        mkdir gitrepo
-                        cd gitrepo
-                        git clone ${gitremote} . --no-checkout
-                        if [ "${gitremote_training}" ]; then
-                            git remote add training "${gitremote_training}"
-                        fi
-                        git fetch --all
-                        echo ========== Initial Git Refs for Source ============
-                        git show-ref
-                        cd ..
-                        rm -fr jenkinsdsl
-                        mkdir jenkinsdsl
-                        cd jenkinsdsl
-                        git clone ${jenkinsdslgitremote} . --no-checkout
-                        git fetch --all --tags
-                        git checkout ${jenkinsdslgitbranch}
-                        echo ========== Git refs for Jenkins DSL ===============
-                        git show-ref
-                        cd ..
+                        chmod +x log.py
+                        python3 log.py
                     '''
                 }
                 stage('WS clean'){
