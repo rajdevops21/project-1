@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     options { timestamps () }
     stages {
         stage('Example Build') {
