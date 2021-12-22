@@ -1,5 +1,4 @@
 import logging
 
-logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
-logging.warning('The Admin just logged out')
-logging.info('Mahes is a very taleneted guy')
+logging.basicConfig(format='%(process)d-%(levelname)s-%(message)s')
+logging.warning('This message is a warning')
