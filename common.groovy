@@ -15,11 +15,11 @@ def commoncode(){
                 
                 stage('Build') {
                     catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                        print "DEBUG: parameter jobtype = ${jobtype}"
+                        print "DEBUG: parameter jobtype"
                     }
                 }
                 stage('Test') {
-                    print "DEBUG: parameter jobtype = ${jobtype}"
+                    print "DEBUG: parameter jobtype"
                 }
                 stage('Example Build') {
                     sh '''#!/bin/bash
