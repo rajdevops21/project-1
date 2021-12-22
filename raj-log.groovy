@@ -7,6 +7,7 @@ pipeline {
                 sh '''#!/bin/bash
                   chmod +x log.py
                   python3 log.py
+                '''
             }
         }
      }
