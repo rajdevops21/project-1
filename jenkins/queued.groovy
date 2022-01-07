@@ -1,6 +1,5 @@
 import hudson.model.*
-import jenkins.model.Jenkins
-def jobName = 'main-player-matrix-pr'
+def jobName = 'DEV'
 def q = Jenkins.instance.queue
 q.items.findAll { it.task.name.contains(jobName) }.each { 
  
