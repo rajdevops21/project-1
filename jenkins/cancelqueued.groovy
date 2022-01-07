@@ -7,6 +7,8 @@ node {
           which groovy
           pwd
           ls -larth
+          chmod +x jenkins/queued.groovy
+          groovy jenkins/queued.groovy
       '''
     }
     stage('Workspace Clean') {
