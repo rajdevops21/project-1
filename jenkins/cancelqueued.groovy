@@ -15,7 +15,7 @@ node {
         running.each {
           println("running: " + it)
         }
-      
+      }
     }
     stage('Workspace Clean') {
       sh 'rm -fr *'
