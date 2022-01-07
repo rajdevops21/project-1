@@ -1,11 +1,11 @@
+import hudson.model.*
+import jenkins.model.Jenkins
 pipeline {
   agent any
   stages {
     stage ('Run the groovy script') {
       steps {
         script {
-            import hudson.model.*
-            import jenkins.model.Jenkins
             def jobName = 'main-player-matrix-pr'
             def q = Jenkins.instance.queue
             q.items.findAll { it.task.name.toLowerCase().contains(jobName) }.each { 
