@@ -6,6 +6,7 @@ node {
       sh '''#!/bin/bash
           which groovy
           pwd
+          ls -larth
       '''
     }
     stage('Workspace Clean') {
