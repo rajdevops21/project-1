@@ -6,7 +6,7 @@ node {
     
     properties([[$class: 'BuildDiscarderProperty',
                     strategy: [$class: 'LogRotator', numToKeepStr: '30']],
-                    pipelineTriggers([cron('H 23 * * *')]),
+                    pipelineTriggers([cron('H 22 * * *')]),
               ])
     
     stage('Get the Queued list') {
