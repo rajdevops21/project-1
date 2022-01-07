@@ -1,15 +1,21 @@
+import hudson.model.*
+import jenkins.model.Jenkins
 node {
   timestamps {
     checkout scm
     
     stage('Get the Queued list') {
-      sh '''#!/bin/bash
-          which groovy
-          pwd
-          ls -larth
-          chmod +x jenkins/queued.groovy
-          groovy jenkins/queued.groovy
-      '''
+      script {
+        def jobName = 'DEV'
+        def q = Jenkins.instance.queue
+        q.items.findAll { it.task.name.contains(jobName) }.each {
+          println("queued: " + it.task.name)
+        }
+        def running = Jenkins.instance.getView('All').getBuilds().findAll{ it.getResult().equals(null) && it.toString().contains(jobName) }
+        running.each {
+          println("running: " + it)
+        }
+      
     }
     stage('Workspace Clean') {
       sh 'rm -fr *'
