@@ -1,10 +1,15 @@
-def cancelqueue
-
 node {
   timestamps {
     checkout scm
     
-    cancelqueue = load 'queued.groovy'
-    cancelqueue.queue()
+    stage('Get the Queued list') {
+      sh '''#!/bin/bash
+          which groovy
+          pwd
+      '''
+    }
+    stage('Workspace Clean') {
+      sh 'rm -fr *'
+    }
   }
 }
