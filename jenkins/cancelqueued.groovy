@@ -1,4 +1,5 @@
 def cancelqueue()
+
 node {
   timestamps {
     checkout scm
