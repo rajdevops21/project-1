@@ -1,4 +1,4 @@
-def cancelqueue()
+def cancelqueue
 
 node {
   timestamps {
