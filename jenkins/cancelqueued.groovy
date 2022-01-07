@@ -11,7 +11,7 @@ node {
     
     stage('Get the Queued list') {
       script {
-        def jobName = 'DEV'
+        def jobName = 'ci'
         def q = Jenkins.instance.queue
         q.items.findAll { it.task.name.contains(jobName) }.each {
           println("queued: " + it.task.name)
