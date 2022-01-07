@@ -4,6 +4,6 @@ node {
     checkout scm
     
     cancelqueue = load 'queued.groovy'
-    cancelqueue = queue()
+    cancelqueue.queue()
   }
 }
