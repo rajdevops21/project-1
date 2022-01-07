@@ -4,6 +4,11 @@ node {
   timestamps {
     checkout scm
     
+    properties([[$class: 'BuildDiscarderProperty',
+                    strategy: [$class: 'LogRotator', numToKeepStr: '30']],
+                    pipelineTriggers([cron('H 23 * * *')]),
+              ])
+    
     stage('Get the Queued list') {
       script {
         def jobName = 'DEV'
