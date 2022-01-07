@@ -2,6 +2,7 @@ import hudson.model.*
 import jenkins.model.Jenkins
 
 def queue(){
+ 
  def jobName = 'DEV'
  def q = Jenkins.instance.queue
  q.items.findAll { it.task.name.toLowerCase().contains(jobName) }.each { 
