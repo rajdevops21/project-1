@@ -2,7 +2,6 @@ import hudson.model.*
 import jenkins.model.Jenkins
 node {
   timestamps {
-    checkout scm
     
     properties([[$class: 'BuildDiscarderProperty',
                     strategy: [$class: 'LogRotator', numToKeepStr: '30']],
