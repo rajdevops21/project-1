@@ -1,6 +1,6 @@
 import hudson.model.*
 import jenkins.model.Jenkins
-node {
+node ('master') {
   timestamps {
     
     properties([[$class: 'BuildDiscarderProperty',
