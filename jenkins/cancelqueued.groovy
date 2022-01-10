@@ -14,6 +14,7 @@ node ('master') {
         def q = Jenkins.instance.queue
         q.items.findAll { it.task.name.contains(jobName) }.each {
           println("queued: " + it.task.name)
+          q.cancel(it.task)
         }
       }
     }
