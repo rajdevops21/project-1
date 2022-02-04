@@ -4,7 +4,7 @@ import base64
 import os
 import re
 import ssl
-import urllib.request as urllib
+import urllib.request
 import xml.etree.ElementTree
 
 
