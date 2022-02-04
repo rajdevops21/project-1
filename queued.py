@@ -35,6 +35,8 @@ def send_jenkins_request(location, request_data=None, method='GET'):
             context.load_default_certs()
         else:
             context = None
+            
+        print(request_url)
         req = urllib.request(request_url, data=request_data, headers=HEADERS)
         urlconn = urllib.urlopen(req, context=context)
         response_string = urlconn.read()
