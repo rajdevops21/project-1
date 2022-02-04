@@ -5,7 +5,7 @@ import os
 import re
 import ssl
 import urllib.request
-import xml.etree.ElementTree
+import xml.etree.ElementTree as ET
 
 
 
@@ -71,7 +71,7 @@ data = send_jenkins_request(url)
 #queue_ids = strip_xml_tags_and_split(data)
 #for qid in queue_ids:
 #    send_jenkins_request('/queue/cancelItem?id=%s' % qid, method='POST')
-tree = ElementTree.fromstring(data)
+tree = ET.fromstring(data)
 root = tree.getroot()
 for id_node in root.findall("id"):
   send_jenkins_request("/queue/cancelItem?id={}".format(id_node.text))
