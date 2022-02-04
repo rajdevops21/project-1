@@ -4,7 +4,7 @@ import base64
 import os
 import re
 import ssl
-import urllib2
+import urllib.request
 import xml.etree.ElementTree
 
 
@@ -35,8 +35,8 @@ def send_jenkins_request(location, request_data=None, method='GET'):
             context.load_default_certs()
         else:
             context = None
-        req = urllib2.Request(request_url, data=request_data, headers=HEADERS)
-        urlconn = urllib2.urlopen(req, context=context)
+        req = urllib.request.request(request_url, data=request_data, headers=HEADERS)
+        urlconn = urllib.request.urlopen(req, context=context)
         response_string = urlconn.read()
         response_code = urlconn.getcode()
         urlconn.close()
