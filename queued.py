@@ -37,8 +37,8 @@ def send_jenkins_request(location, request_data=None, method='GET'):
             context = None
             
         print(request_url)
-        req = urllib.request(request_url, data=request_data, headers=HEADERS)
-        urlconn = urllib.urlopen(req, context=context)
+        req = urllib.request.Request(request_url, data=request_data, headers=HEADERS)
+        urlconn = urllib.request.urlopen(req, context=context)
         response_string = urlconn.read()
         response_code = urlconn.getcode()
         urlconn.close()
