@@ -42,7 +42,7 @@ def send_jenkins_request(location, request_data=None, method='GET'):
         response_string = urlconn.read()
         response_code = urlconn.getcode()
         urlconn.close()
-    except urllib.HTTPError as e:
+    except urllib.request.HTTPError as e:
         response_code = e.code
 
     print('url: {}\ncode: {}'.format(request_url, response_code, HEADERS))
