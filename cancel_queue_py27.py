@@ -48,7 +48,10 @@ def send_jenkins_request(location, request_data=None, method='GET'):
 def strip_xml_tags_and_split(txt, split_by='\n'):
     result = re.sub('<[^>]*>', split_by, txt)
     print("Prinnting Result:",result)
+    print("Prinnting Result:",result)
     result = [i for i in result.split(split_by) if i]
+    print("Prinnting Result1:",result)
+    print("Prinnting Result1:",result)
     return result
 #This function strip the xml tags from the data and then split them one by one to process through send_jenkins_requestI
 # text parameter for queue id example. 
