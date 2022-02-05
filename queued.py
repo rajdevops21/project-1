@@ -97,6 +97,7 @@ url = (
     % UPSTREAM_BUILD_ID
 )
 data = send_jenkins_request(url)
+print("Printing Data",data)
 job_urls = strip_xml_tags_and_split(data)
 for url in job_urls:
     # skip rebuilds jobs
