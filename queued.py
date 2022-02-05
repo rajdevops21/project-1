@@ -45,8 +45,8 @@ def send_jenkins_request(location, request_data=None, method='GET'):
     return response_string
 
 
-def strip_xml_tags_and_split(txt, split_by='\n'):
-    result = re.sub('<[^>]*>', split_by, str(txt))
+def strip_xml_tags_and_split(txt):
+    result = re.sub('<[^>]*>', '\n', txt)
     print("Prinnting Result:",result)
     result = [i for i in result.split(split_by) if i]
     print("Prinnting Result1:",result)
