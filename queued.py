@@ -13,7 +13,7 @@ JENKINS_URL = 'http://10.25.12.43:8080'
 JENKINS_USER = 'admin'
 JENKINS_PASSWORD = 'BocceBal1'
 
-ENCODED_TOKEN = base64.encodestring(('%s:%s' % (JENKINS_USER, JENKINS_TOKEN)).encode()).decode().strip()
+ENCODED_TOKEN = base64.encodestring(('%s:%s' % (JENKINS_USER, JENKINS_PASSWORD)).encode()).decode().strip()
 HEADERS = {
     'Authorization': 'Basic %s' % ENCODED_TOKEN,
 }
