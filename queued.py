@@ -5,17 +5,15 @@ import os
 import re
 import ssl
 import urllib.request
-import xml.etree.ElementTree as ET
-
 
 
 UPSTREAM_JOB_NAME = os.getenv('JOB_NAME')
 UPSTREAM_BUILD_ID = os.getenv('BUILD_NUMBER')
 JENKINS_URL = 'http://10.25.12.43:8080'
 JENKINS_USER = 'admin'
-JENKINS_TOKEN = 'BocceBal1'
+JENKINS_PASSWORD = 'BocceBal1'
 
-ENCODED_TOKEN = base64.encodestring(('%s:%s' % (JENKINS_USER, JENKINS_TOKEN)).encode()).decode().strip()
+ENCODED_TOKEN = base64.encodestring('%s:%s' % (JENKINS_USER, JENKINS_PASSWORD)).replace('\n', '')
 HEADERS = {
     'Authorization': 'Basic %s' % ENCODED_TOKEN,
 }
@@ -35,8 +33,6 @@ def send_jenkins_request(location, request_data=None, method='GET'):
             context.load_default_certs()
         else:
             context = None
-            
-        print(request_url)
         req = urllib.request.Request(request_url, data=request_data, headers=HEADERS)
         urlconn = urllib.request.urlopen(req, context=context)
         response_string = urlconn.read()
@@ -45,7 +41,7 @@ def send_jenkins_request(location, request_data=None, method='GET'):
     except urllib.request.HTTPError as e:
         response_code = e.code
 
-    print('url: {}\ncode: {}'.format(request_url, response_code, HEADERS))
+    print('url: {}\ncode: {}'.format(request_url, response_code))
     return response_string
 
 
@@ -53,7 +49,16 @@ def strip_xml_tags_and_split(txt, split_by='\n'):
     result = re.sub('<[^>]*>', split_by, txt)
     result = [i for i in result.split(split_by) if i]
     return result
-
+#This function strip the xml tags from the data and then split them one by one to process through send_jenkins_requestI
+# text parameter for queue id example. 
+#
+#   <root>
+#   <id>777</id>
+#   <id>788</id>
+#   <id>799</id>
+#   </root>
+#and the oputput is
+#[777,788,799]
 
 # Find downstream jobs in a queue
 #
@@ -68,14 +73,10 @@ url = (
     % UPSTREAM_BUILD_ID
 )
 data = send_jenkins_request(url)
-#queue_ids = strip_xml_tags_and_split(data)
-#for qid in queue_ids:
-#    send_jenkins_request('/queue/cancelItem?id=%s' % qid, method='POST')
-tree = ET.fromstring(data)
-print("Printing Tree:%s",tree)
-root = tree.getroot()
-for id_node in root.findall("id"):
-  send_jenkins_request("/queue/cancelItem?id={}".format(id_node.text))
+queue_ids = strip_xml_tags_and_split(data)
+for qid in queue_ids:
+    send_jenkins_request('/queue/cancelItem?id=%s' % qid, method='POST')
+
 
 # Find downstream running jobs
 #
@@ -85,7 +86,7 @@ for id_node in root.findall("id"):
 #   http://my-jenkins.com/job/test-downstream-job/777
 #   </url>
 #   <url>
-#   http://my-jenkins.com/job/rebuild-master-job/7
+#   http://my-jenkins.com/job/rebuild-main-job/7
 #   </url>
 #   </root>
 url = (
