@@ -5,7 +5,8 @@ import os
 import re
 import ssl
 import urllib.request
-import xml.etree.ElementTree
+from xml.etree.ElementTree import XML, fromstring
+from xml.etree.ElementTree.ElementTree import getroot
 
 
 
