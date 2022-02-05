@@ -47,6 +47,7 @@ def send_jenkins_request(location, request_data=None, method='GET'):
 
 def strip_xml_tags_and_split(txt, split_by='\n'):
     result = re.sub('<[^>]*>', split_by, txt)
+    print("Prinnting Result:",result)
     result = [i for i in result.split(split_by) if i]
     return result
 #This function strip the xml tags from the data and then split them one by one to process through send_jenkins_requestI
@@ -73,6 +74,7 @@ url = (
     % UPSTREAM_BUILD_ID
 )
 data = send_jenkins_request(url)
+print("Printing Data",data)
 queue_ids = strip_xml_tags_and_split(data)
 for qid in queue_ids:
     send_jenkins_request('/queue/cancelItem?id=%s' % qid, method='POST')
