@@ -73,6 +73,7 @@ url = (
     % UPSTREAM_BUILD_ID
 )
 data = send_jenkins_request(url)
+print("Printing Data",data)
 queue_ids = strip_xml_tags_and_split(data)
 for qid in queue_ids:
     send_jenkins_request('/queue/cancelItem?id=%s' % qid, method='POST')
